@@ -1,0 +1,9 @@
+LOAD_LABELS "/home/jad/Projekty/prog8c-asm/main.vice-mon-list"
+
+BK p8b_asm:p8s_parse_file
+BK mnc:parse
+BK p8b_file:p8s_open
+BK p8b_lbl:p8s_parse
+BK p8b_cmd:p8s_c_macro
+BK p8b_asm:p8s_parse_line
+BK p8b_expression:p8s_is_letter

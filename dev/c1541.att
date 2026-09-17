@@ -1,0 +1,19 @@
+format jad-asm,jad d64 "asm.d64" 8
+
+write "./build/start.prg"         "start,p"
+write "./build/asm"               "asm,p"
+
+write "./build/TMP"               "tmp,p"
+write "./build/MAIN_S.S00"        "main.s,s"
+write "./build/PRINTF_S.S00"      "printf.s,s"
+write "./build/FAST-HACKEM_S.S00" "fast-hackem.s,s"
+write "./build/READ-D64_S.S00"    "read-d64.s,s"
+write "./build/ASC_I.S00"         "asc.i,s"
+write "./build/COLORS_I.S00"      "colors.i,s"
+write "./build/IO_I.S00"          "io.i,s"
+write "./build/KERNEL_I.S00"      "kernel.i,s"
+write "./build/KEY_I.S00"         "key.i,s"
+write "./build/MACROS_I.S00"      "macros.i,s"
+write "./build/RAM_I.S00"         "ram.i,s"
+
+exit

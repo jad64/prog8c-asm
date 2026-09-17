@@ -1,0 +1,11 @@
+.arc/
+.stuff/
+.tmp/
+.vscode/
+
+asm.d64
+main.asm
+main.bin
+main.dis
+main.list
+main.vice-mon-list

@@ -1,0 +1,9 @@
+LOAD_LABELS "\proj\prog8c-asm\main.vice-mon-list"
+
+BK p8b_mnc:p8s_parse
+BK p8b_asm:p8s_get_quoted_text
+BK p8b_asm:p8s_parse_line
+BK p8b_lbl:p8s_parse
+BK load store p8b_asm:p8s_parse_file:p8v_st_STATUS if A != $00
+BK p8b_eval:p8s_get_operand_addressing_mode
+

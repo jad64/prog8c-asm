@@ -1,0 +1,49 @@
+;----------------------------------------------
+;  asc.i
+;----------------------------------------------
+
+ASC_STOP            =   3
+ASC_WHITE           =   5
+ASC_DISABLESW       =   8
+ASC_ENABLESW        =   9
+ASC_RETURN          =   13
+ASC_LOWERCASE       =   14
+ASC_CRSRDOWN        =   17
+ASC_RVSON           =   18
+ASC_HOME            =   19
+ASC_DEL             =   20
+ASC_RED             =   28
+ASC_CRSRRIGHT       =   29
+ASC_GREEN           =   30
+ASC_BLUE            =   31
+ASC_SPACE           =   32
+ASC_QUOTE           =   34
+ASC_ESC             =   95
+ASC_ORANGE          =   129
+ASC_F1              =   133
+ASC_F3              =   134
+ASC_F5              =   135
+ASC_F7              =   136
+ASC_F2              =   137
+ASC_F4              =   138
+ASC_F6              =   139
+ASC_F8              =   140
+ASC_SHIFTEDRETURN   =   141
+ASC_UPPERCASE       =   142
+ASC_BLACK           =   144
+ASC_CRSRUP          =   145
+ASC_RVSOFF          =   146
+ASC_CLEARSCREEN     =   147
+ASC_INSERT          =   148
+ASC_BROWN           =   149
+ASC_LIGHTRED        =   150
+ASC_GRAY1           =   151
+ASC_GRAY2           =   152
+ASC_LIGHTGREEN      =   153
+ASC_LIGHTBLUE       =   154
+ASC_GRAY3           =   155
+ASC_PURPLE          =   156
+ASC_CRSRLEFT        =   157
+ASC_YELLOW          =   158
+ASC_CYAN            =   159
+ASC_SHIFTEDSPACE    =   160
