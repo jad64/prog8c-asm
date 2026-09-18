@@ -4,4 +4,3 @@
 30 poke56584,0:rem start tod
 35 rem open1,8,1,"@0:output.txt,s,w":cmd1
 40 sys32768,"main.s",8
-50 print"{return}{return}";peek(56586);":";peek(56585);":";peek(56584)

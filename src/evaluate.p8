@@ -47,16 +47,22 @@ evaluate {
 	;----------------------------------------------
 	sub equation()
 	{
-		if (false == label.parsed) {
-			msg.error(msg.MSG::NO_LABEL)
+		if (asm.pass == 1) {
+			if (false == label.parsed) {
+				msg.error(msg.MSG::NO_LABEL)
+			}
+
+			util.str_copy(&fileio.line_buffer[asm.parse_line.ptr + 1])
+			util.str_ltrim()
+			void util.str_store(operand)
+
+			expression()
+			if (status != STATUS::OK) {
+				msg.error(msg.MSG::EVAL_EXPRESSION)
+			}
+
+			label.set_value(result)
 		}
-
-		util.str_copy(&fileio.line_buffer[asm.parse_line.ptr + 1])
-		util.str_ltrim()
-		void util.str_store(operand)
-
-		expression()
-		label.set_value(result)
 	}
 
 	;----------------------------------------------

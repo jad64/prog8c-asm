@@ -116,7 +116,7 @@ mnemonic {
 			asm.str_get_mnemonic()
 
 			for s_mnemonic in MNEMONICS {
-				if (0 == util.str_cmp(s_mnemonic.name)) {
+				if (util.str_cmp(s_mnemonic.name)) {
 					evaluate.addressing_mode()
 
 					uword am = evaluate.result & s_mnemonic.modes

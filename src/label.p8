@@ -12,6 +12,7 @@ label {
 	;----------------------------------------------
 	struct S_LABEL {
 		uword next
+		uword prev
 		ubyte block_num
 		ubyte status
 		uword value
@@ -54,6 +55,7 @@ label {
 	;  variables
 	;----------------------------------------------
 	uword current
+	uword last
 	uword count
 
 	uword find_result
@@ -66,8 +68,10 @@ label {
 	sub init()
 	{
 		current = LABELS
+		last = LABELS
 		count   = 0
 		set_next(LABELS)
+		set_prev(LABELS)
 	}
 
 	;----------------------------------------------
@@ -100,28 +104,25 @@ label {
 	sub parse()
 	{
 		str_get_name()
-		str_find_label()
 
 		if (asm.pass == 1) {
+			str_find_label()
 			if (0 != find_result) {
 				msg.error(msg.MSG::DOUBLE_DEFINED)
 			}
 
+			cx16.r0 = current
 			current = get_next(current)
+			last = current
 
 			set_name()
 			set_block_num()
 			set_value(asm.pc)
 			set_status(DEFAULT_STATUS, $00)
 			set_next(current + get_size(current))
+			set_prev(cx16.r0)
 
 			count++
-		} else {
-			if (0 == find_result) {
-				msg.error(msg.MSG::NO_LABEL)
-			}
-
-			current = find_result
 		}
 
 		parsed = true
@@ -215,11 +216,27 @@ label {
 	}
 
 	;----------------------------------------------
+	;  set_prev()
+	;----------------------------------------------
+	sub set_prev(uword addr)
+	{
+		pokew(current + offsetof(S_LABEL.prev), addr)
+	}
+
+	;----------------------------------------------
 	;  get_next()
 	;----------------------------------------------
 	inline sub get_next(uword plabel) -> uword
 	{
 		return peekw(plabel + offsetof(S_LABEL.next))
+	}
+
+	;----------------------------------------------
+	;  get_prev()
+	;----------------------------------------------
+	inline sub get_prev(uword plabel) -> uword
+	{
+		return peekw(plabel + offsetof(S_LABEL.prev))
 	}
 
 	;----------------------------------------------
@@ -238,20 +255,23 @@ label {
 			}
 		}
 
+		;----------------------------------------------
+		;  find_block()
+		;----------------------------------------------
 		sub find_block(ubyte block)
 		{
-			find_result = LABELS
+			find_result = last
 			repeat count {
 				if (block == peek(find_result + offsetof(S_LABEL.block_num))) {
 					if (crc == peek(find_result + offsetof(S_LABEL.name_crc))) {
 						if (length == peek(find_result + offsetof(S_LABEL.name_length))) {
-							if (0 == util.str_cmp(find_result + offsetof(S_LABEL.name))) {
+							if (util.str_cmp(find_result + offsetof(S_LABEL.name))) {
 								return
 							}
 						}
 					}
 				}
-				find_result = get_next(find_result)
+				find_result = get_prev(find_result)
 			}
 
 			find_result = 0

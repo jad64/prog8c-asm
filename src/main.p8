@@ -97,6 +97,15 @@ main {
 			asm.parse_file()
 		}
 
+		;	display tod
+		util.str_copy("\nElapsed time:")
+		util.str_append_hex(c64.TO2MIN)
+		util.str_append_char(':')
+		util.str_append_hex(c64.TO2SEC)
+		util.str_append_char('.')
+		util.str_append_hex(c64.TO2TEN)
+		util.str_puts()
+
 		c64.R6510 = $37
 	}
 }

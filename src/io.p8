@@ -243,10 +243,10 @@ c64 {
 ;    &ubyte  TI2AHI          = $DD05 ;           TIMER A: HIGH-BYTE
 ;    &ubyte  TI2BLO          = $DD06 ;           TIMER B: LOW-BYTE
 ;    &ubyte  TI2BHI          = $DD07 ;           TIMER B: HIGH-BYTE
-;    &ubyte  TO2TEN          = $DD08 ;           TIME-OF-DAY CLOCK: 1/10 SECONDS
-;    &ubyte  TO2SEC          = $DD09 ;           TIME-OF-DAY CLOCK: SECONDS
-;    &ubyte  TO2MIN          = $DD0A ;           TIME-OF-DAY CLOCK: MINUTES
-;    &ubyte  TO2HRS          = $DD0B ;           TIME-OF-DAY CLOCK: HOURS + AM/PM FLAG (BIT 7)
+    &ubyte  TO2TEN          = $DD08 ;           TIME-OF-DAY CLOCK: 1/10 SECONDS
+    &ubyte  TO2SEC          = $DD09 ;           TIME-OF-DAY CLOCK: SECONDS
+    &ubyte  TO2MIN          = $DD0A ;           TIME-OF-DAY CLOCK: MINUTES
+    &ubyte  TO2HRS          = $DD0B ;           TIME-OF-DAY CLOCK: HOURS + AM/PM FLAG (BIT 7)
 ;    &ubyte  CI2SDR          = $DD0C ;           SYNCHRONOUS SERIAL I/O DATA BUFFER
 ;    &ubyte  CI2ICR          = $DD0D ;           CIA INTERRUPT CONTROL REGISTER (READ NMLS/WRITE MASK)
 ;                                    ;   7       NMI FLAG (1 = NMI OCCURRED) / SET-CLEAR FLAG

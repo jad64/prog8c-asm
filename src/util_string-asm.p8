@@ -190,7 +190,7 @@ length		.byte	?
 	;----------------------------------------------
 	;  str_cmp()
 	;----------------------------------------------
-	asmsub str_cmp(uword str_ @AY) -> ubyte @A {
+	asmsub str_cmp(uword str_ @AY) -> bool @Pc {
 		%asm {{
 
 			stay	P8ZP_SCRATCH_PTR
@@ -198,18 +198,15 @@ length		.byte	?
 			ldy		#<-1
 _l0			iny
 			lda		p8v_string,y
-		;	jsr		p8b_uttil.p8s_tolower
 			cmp		(P8ZP_SCRATCH_PTR),y
-			beq		_lq
-
-			bmi		_ll
-_lg			lda		#1
-			rts
-_ll			lda		#<-1
-			rts
-
-_lq			cmp		#0
+			bne		_lnf
+			cmp		#0
 			bne		_l0
+
+			sec
+			rts
+
+_lnf		clc
 			rts
 		}}
 	}

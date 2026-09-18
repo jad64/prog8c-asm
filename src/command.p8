@@ -117,7 +117,7 @@ command {
 		asm.str_get_command()
 
 		for num in len(COMMANDS) - 1 downto 0 {
-			if (0 == util.str_cmp(COMMANDS[num])) {
+			if (util.str_cmp(COMMANDS[num])) {
 				if (is_exec_enabled()) {
 					goto PROCEDURES[num]
 				}
