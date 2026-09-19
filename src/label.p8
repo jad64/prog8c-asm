@@ -7,6 +7,8 @@
 ;----------------------------------------------
 label {
 
+	%asminclude "../inc/macros.i"
+
 	;----------------------------------------------
 	;  struct
 	;----------------------------------------------
@@ -231,13 +233,13 @@ label {
 		return peekw(plabel + offsetof(S_LABEL.next))
 	}
 
-	;----------------------------------------------
-	;  get_prev()
-	;----------------------------------------------
-	inline sub get_prev(uword plabel) -> uword
-	{
-		return peekw(plabel + offsetof(S_LABEL.prev))
-	}
+;	;----------------------------------------------
+;	;  get_prev()
+;	;----------------------------------------------
+;	inline sub get_prev(uword plabel) -> uword
+;	{
+;		return peekw(plabel + offsetof(S_LABEL.prev))
+;	}
 
 	;----------------------------------------------
 	;  str_find_label()
@@ -253,28 +255,6 @@ label {
 			if (block0 > 0) {
 				find_block(0)
 			}
-		}
-
-		;----------------------------------------------
-		;  find_block()
-		;----------------------------------------------
-		sub find_block(ubyte block)
-		{
-			find_result = last
-			repeat count {
-				if (block == peek(find_result + offsetof(S_LABEL.block_num))) {
-					if (crc == peek(find_result + offsetof(S_LABEL.name_crc))) {
-						if (length == peek(find_result + offsetof(S_LABEL.name_length))) {
-							if (util.str_cmp(find_result + offsetof(S_LABEL.name))) {
-								return
-							}
-						}
-					}
-				}
-				find_result = get_prev(find_result)
-			}
-
-			find_result = 0
 		}
 	}
 }

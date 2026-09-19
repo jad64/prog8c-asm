@@ -20,6 +20,7 @@
 %import fileio
 %import command
 %import mnemonic
+%import "mnemonic-asm"
 %import messages
 %import assembler
 %import evaluate

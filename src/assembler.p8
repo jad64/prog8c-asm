@@ -164,18 +164,18 @@ asm {
 		return ch in [0, ' ', ';']
 	}
 
-	;----------------------------------------------
-	;  str_get_mnemonic()
-	;----------------------------------------------
-	sub str_get_mnemonic()
-	{
-		util.str_init()
-
-		alias ptr = asm.parse_line.ptr
-		repeat 3 {
-			ubyte ch = fileio.line_buffer[ptr]
-			util.str_append_char(ch)
-			ptr++
-		}
-	}
+;	;----------------------------------------------
+;	;  str_get_mnemonic()
+;	;----------------------------------------------
+;	sub str_get_mnemonic()
+;	{
+;		util.str_init()
+;
+;		alias ptr = asm.parse_line.ptr
+;		repeat 3 {
+;			ubyte ch = fileio.line_buffer[ptr]
+;			util.str_append_char(ch)
+;			ptr++
+;		}
+;	}
 }

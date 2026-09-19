@@ -7,14 +7,7 @@
 ;----------------------------------------------
 mnemonic {
 
-	;----------------------------------------------
-	;  struct
-	;----------------------------------------------
-	struct S_MNEMONIC {
-		str   name
-		uword modes
-		str   codes
-	}
+	%asminclude "../inc/macros.i"
 
 	;----------------------------------------------
 	;  const
@@ -35,69 +28,136 @@ mnemonic {
 
 	const uword AM_INVALID	= 0
 
-	^^S_MNEMONIC[] MNEMONICS = [
-		["adc", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\x69\x65\x75\x6D\x7D\x79\x61\x71"],
-		["and", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\x29\x25\x35\x2D\x3D\x39\x21\x31"],
-		["asl", AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 						"\x0A\x06\x16\x0E\x1E"],
-		["bcc", AM_REL, 													"\x90"],
-		["bcs", AM_REL, 													"\xB0"],
-		["beq", AM_REL, 													"\xF0"],
-		["bit", AM_ZP|AM_ABS, 												"\x24\x2C"],
-		["bmi", AM_REL, 													"\x30"],
-		["bne", AM_REL, 													"\xD0"],
-		["bpl", AM_REL, 													"\x10"],
-		["brk", AM_IMP, 													"\x00"],
-		["bvc", AM_REL, 													"\x50"],
-		["bvs", AM_REL, 													"\x70"],
-		["clc", AM_IMP, 													"\x18"],
-		["cld", AM_IMP, 													"\xD8"],
-		["cli", AM_IMP, 													"\x58"],
-		["clv", AM_IMP, 													"\xB8"],
-		["cmp", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\xC9\xC5\xD5\xCD\xDD\xD9\xC1\xD1"],
-		["cpx", AM_IMM|AM_ZP|AM_ABS, 										"\xE0\xE4\xEC"],
-		["cpy", AM_IMM|AM_ZP|AM_ABS, 										"\xC0\xC4\xCC"],
-		["dec", AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 								"\xC6\xD6\xCE\xDE"],
-		["dex", AM_IMP, 													"\xCA"],
-		["dey", AM_IMP, 													"\x88"],
-		["eor", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\x49\x45\x55\x4D\x5D\x59\x41\x51"],
-		["inc", AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 								"\xE6\xF6\xEE\xFE"],
-		["inx", AM_IMP, 													"\xE8"],
-		["iny", AM_IMP, 													"\xC8"],
-		["jmp", AM_ABS|AM_INDW, 											"\x4C\x6C"],
-		["jsr", AM_ABS, 													"\x20"],
-		["lda", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\xA9\xA5\xB5\xAD\xBD\xB9\xA1\xB1"],
-		["ldx", AM_IMM|AM_ZP|AM_ZPY|AM_ABS|AM_ABSY, 						"\xA2\xA6\xB6\xAE\xBE"],
-		["ldy", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 						"\xA0\xA4\xB4\xAC\xBC"],
-		["lsr", AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 						"\x4A\x46\x56\x4E\x5E"],
-		["nop", AM_IMP, 													"\xEA"],
-		["ora", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\x09\x05\x15\x0D\x1D\x19\x01\x11"],
-		["pha", AM_IMP, 													"\x48"],
-		["php", AM_IMP, 													"\x08"],
-		["pla", AM_IMP, 													"\x68"],
-		["plp", AM_IMP, 													"\x28"],
-		["rol", AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 						"\x2A\x26\x36\x2E\x3E"],
-		["ror", AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX, 						"\x6A\x66\x76\x6E\x7E"],
-		["rti", AM_IMP, 													"\x40"],
-		["rts", AM_IMP, 													"\x60"],
-		["sbc", AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,	"\xE9\xE5\xF5\xED\xFD\xF9\xE1\xF1"],
-		["sec", AM_IMP, 													"\x38"],
-		["sed", AM_IMP, 													"\xF8"],
-		["sei", AM_IMP, 													"\x78"],
-		["sta", AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,		"\x85\x95\x8D\x9D\x99\x81\x91"],
-		["stx", AM_ZP|AM_ZPY|AM_ABS, 										"\x86\x96\x8E"],
-		["sty", AM_ZP|AM_ZPX|AM_ABS, 										"\x84\x94\x8C"],
-		["tax", AM_IMP, 													"\xAA"],
-		["tay", AM_IMP, 													"\xA8"],
-		["tsx", AM_IMP, 													"\xBA"],
-		["txa", AM_IMP, 													"\x8A"],
-		["txs", AM_IMP, 													"\x9A"],
-		["tya", AM_IMP, 													"\x98"]
+	uword[] MODES = [
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_REL,
+		AM_REL,
+		AM_REL,
+		AM_ZP|AM_ABS,
+		AM_REL,
+		AM_REL,
+		AM_REL,
+		AM_IMP,
+		AM_REL,
+		AM_REL,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMM|AM_ZP|AM_ABS,
+		AM_IMM|AM_ZP|AM_ABS,
+		AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP,
+		AM_IMP,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP,
+		AM_IMP,
+		AM_ABS|AM_INDW,
+		AM_ABS,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMM|AM_ZP|AM_ZPY|AM_ABS|AM_ABSY,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX,
+		AM_IMP,
+		AM_IMP,
+		AM_IMM|AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_ZP|AM_ZPX|AM_ABS|AM_ABSX|AM_ABSY|AM_INDX|AM_INDY,
+		AM_ZP|AM_ZPY|AM_ABS,
+		AM_ZP|AM_ZPX|AM_ABS,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+		AM_IMP,
+	]
+
+	ubyte[] C_ADC = [$69, $65, $75, $6D, $7D, $79, $61, $71]
+	ubyte[] C_AND = [$29, $25, $35, $2D, $3D, $39, $21, $31]
+	ubyte[] C_ASL = [$0A, $06, $16, $0E, $1E]
+	ubyte[] C_BCC = [$90]
+	ubyte[] C_BCS = [$B0]
+	ubyte[] C_BEQ = [$F0]
+	ubyte[] C_BIT = [$24, $2C]
+	ubyte[] C_BMI = [$30]
+	ubyte[] C_BNE = [$D0]
+	ubyte[] C_BPL = [$10]
+	ubyte[] C_BRK = [$00]
+	ubyte[] C_BVC = [$50]
+	ubyte[] C_BVS = [$70]
+	ubyte[] C_CLC = [$18]
+	ubyte[] C_CLD = [$D8]
+	ubyte[] C_CLI = [$58]
+	ubyte[] C_CLV = [$B8]
+	ubyte[] C_CMP = [$C9, $C5, $D5, $CD, $DD, $D9, $C1, $D1]
+	ubyte[] C_CPX = [$E0, $E4, $EC]
+	ubyte[] C_CPY = [$C0, $C4, $CC]
+	ubyte[] C_DEC = [$C6, $D6, $CE, $DE]
+	ubyte[] C_DEX = [$CA]
+	ubyte[] C_DEY = [$88]
+	ubyte[] C_EOR = [$49, $45, $55, $4D, $5D, $59, $41, $51]
+	ubyte[] C_INC = [$E6, $F6, $EE, $FE]
+	ubyte[] C_INX = [$E8]
+	ubyte[] C_INY = [$C8]
+	ubyte[] C_JMP = [$4C, $6C]
+	ubyte[] C_JSR = [$20]
+	ubyte[] C_LDA = [$A9, $A5, $B5, $AD, $BD, $B9, $A1, $B1]
+	ubyte[] C_LDX = [$A2, $A6, $B6, $AE, $BE]
+	ubyte[] C_LDY = [$A0, $A4, $B4, $AC, $BC]
+	ubyte[] C_LSR = [$4A, $46, $56, $4E, $5E]
+	ubyte[] C_NOP = [$EA]
+	ubyte[] C_ORA = [$09, $05, $15, $0D, $1D, $19, $01, $11]
+	ubyte[] C_PHA = [$48]
+	ubyte[] C_PHP = [$08]
+	ubyte[] C_PLA = [$68]
+	ubyte[] C_PLP = [$28]
+	ubyte[] C_ROL = [$2A, $26, $36, $2E, $3E]
+	ubyte[] C_ROR = [$6A, $66, $76, $6E, $7E]
+	ubyte[] C_RTI = [$40]
+	ubyte[] C_RTS = [$60]
+	ubyte[] C_SBC = [$E9, $E5, $F5, $ED, $FD, $F9, $E1, $F1]
+	ubyte[] C_SEC = [$38]
+	ubyte[] C_SED = [$F8]
+	ubyte[] C_SEI = [$78]
+	ubyte[] C_STA = [$85, $95, $8D, $9D, $99, $81, $91]
+	ubyte[] C_STX = [$86, $96, $8E]
+	ubyte[] C_STY = [$84, $94, $8C]
+	ubyte[] C_TAX = [$AA]
+	ubyte[] C_TAY = [$A8]
+	ubyte[] C_TSX = [$BA]
+	ubyte[] C_TXA = [$8A]
+	ubyte[] C_TXS = [$9A]
+	ubyte[] C_TYA = [$98]
+
+	uword[] CODES = [
+		C_ADC, C_AND, C_ASL, C_BCC, C_BCS, C_BEQ, C_BIT, C_BMI,
+		C_BNE, C_BPL, C_BRK, C_BVC, C_BVS, C_CLC, C_CLD, C_CLI,
+		C_CLV, C_CMP, C_CPX, C_CPY, C_DEC, C_DEX, C_DEY, C_EOR,
+		C_INC, C_INX, C_INY, C_JMP, C_JSR, C_LDA, C_LDX, C_LDY,
+		C_LSR, C_NOP, C_ORA, C_PHA, C_PHP, C_PLA, C_PLP, C_ROL,
+		C_ROR, C_RTI, C_RTS, C_SBC, C_SEC, C_SED, C_SEI, C_STA,
+		C_STX, C_STY, C_TAX, C_TAY, C_TSX, C_TXA, C_TXS, C_TYA,
 	]
 
 	;----------------------------------------------
 	;  variables
 	;----------------------------------------------
-	^^S_MNEMONIC s_mnemonic
+	ubyte num
 
 	;----------------------------------------------
 	;  is_parse_enabled()
@@ -112,76 +172,66 @@ mnemonic {
 	;----------------------------------------------
 	sub parse()
 	{
-		if (asm.is_delimeter(fileio.line_buffer[asm.parse_line.ptr + 3])) {
-			asm.str_get_mnemonic()
+		if (false == find()) {
+			msg.error(msg.MSG::UNKNOWN_MNEMONIC)
+		}
+		uword modes = MODES[num]
+		uword codes = CODES[num]
 
-			for s_mnemonic in MNEMONICS {
-				if (util.str_cmp(s_mnemonic.name)) {
-					evaluate.addressing_mode()
+		evaluate.addressing_mode()
 
-					uword am = evaluate.result & s_mnemonic.modes
-					if (mnemonic.AM_INVALID == am) {
-						msg.error(msg.MSG::SYNTAX_ERROR)
-					}
-
-					if ((am & AM_IMP) == 0) {
-						evaluate.expression()
-					}
-					alias result = evaluate.result
-					alias status = evaluate.status
-
-					uword ami = %0000_0000_0001_0000
-					ubyte i = 0
-					repeat 12 {
-						if ((ami & am) != 0) {
-							ubyte mncode = peek(s_mnemonic.codes +  i)
-
-							when (ami) {
-								AM_IMP -> {
-									asm.store_at_pc(mncode)
-									return
-								}
-								AM_IMM, AM_INDX, AM_INDY -> {
-									if (msb(result) > 0) {
-										msg.error(msg.MSG::NUMBER_TOO_BIG)
-									}
-									asm.store_at_pc(mncode)
-									asm.store_at_pc(lsb(result))
-									return
-								}
-								AM_ZP, AM_ZPX, AM_ZPY -> {
-									if (status == evaluate.STATUS::OK) {
-										if (msb(result) == 0) {
-											asm.store_at_pc(mncode)
-											asm.store_at_pc(lsb(result))
-											return
-										}
-									}
-								}
-								AM_REL -> {
-									asm.store_at_pc(mncode)
-									asm.store_at_pc(lsb(result - asm.pc - 1))
-									return
-								}
-								AM_ABS, AM_ABSX, AM_ABSY, AM_INDW -> {
-									asm.store_at_pc(mncode)
-									asm.store_at_pc(lsb(result))
-									asm.store_at_pc(msb(result))
-									return
-								}
-							}
-						}
-						if ((ami & s_mnemonic.modes) != 0) {
-							i++
-						}
-						ami <<= 1
-					}
-
-					msg.error(msg.MSG::SYNTAX_ERROR)
-				}
-			}
+		uword am = evaluate.result & modes
+		if (mnemonic.AM_INVALID == am) {
+			msg.error(msg.MSG::SYNTAX_ERROR)
 		}
 
-		msg.error(msg.MSG::UNKNOWN_MNEMONIC)
+		if ((am & AM_IMP) == 0) {
+			evaluate.expression()
+		}
+		alias result = evaluate.result
+		alias status = evaluate.status
+
+		uword ami = %0000_0000_0001_0000
+		ubyte i = 0
+		repeat 12 {
+			if ((ami & am) != 0) {
+				ubyte code = codes[i]
+
+				if ((ami & AM_IMP) != 0) {
+					asm.store_at_pc(code)
+					return
+				} else if ((ami & (AM_IMM|AM_INDX|AM_INDY)) != 0) {
+					if (msb(result) > 0) {
+						msg.error(msg.MSG::NUMBER_TOO_BIG)
+					}
+					asm.store_at_pc(code)
+					asm.store_at_pc(lsb(result))
+					return
+				} else if ((ami & (AM_ZP|AM_ZPX|AM_ZPY)) != 0) {
+					if (status == evaluate.STATUS::OK) {
+						if (msb(result) == 0) {
+							asm.store_at_pc(code)
+							asm.store_at_pc(lsb(result))
+							return
+						}
+					}
+				} else if ((ami & AM_REL) != 0) {
+					asm.store_at_pc(code)
+					asm.store_at_pc(lsb(result - asm.pc - 1))
+					return
+				} else if ((ami & (AM_ABS|AM_ABSX|AM_ABSY|AM_INDW)) != 0) {
+					asm.store_at_pc(code)
+					asm.store_at_pc(lsb(result))
+					asm.store_at_pc(msb(result))
+					return
+				}
+			}
+			if ((ami & modes) != 0) {
+				i++
+			}
+			ami <<= 1
+		}
+
+		msg.error(msg.MSG::SYNTAX_ERROR)
 	}
 }
