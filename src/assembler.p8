@@ -90,6 +90,7 @@ asm {
 					if (ptr == 0) {
 						if (label.is_parse_enabled()) {
 							label.parse()
+							ptr--
 						}
 					} else {
 						if (mnemonic.is_parse_enabled()) {
